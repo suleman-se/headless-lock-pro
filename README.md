@@ -10,6 +10,7 @@ Transform WordPress into a true headless CMS with customizable redirects, securi
 ## Features
 
 ### Frontend Management
+
 - **Block Frontend Access**: Completely disable public frontend while keeping admin and APIs functional
 - **Smart Redirects**: 301 redirect to your headless frontend application
 - **Custom 404 Page**: Beautiful, customizable 404 page with developer-friendly messaging
@@ -17,6 +18,7 @@ Transform WordPress into a true headless CMS with customizable redirects, securi
 - **Whitelist System**: Allow specific paths through filters
 
 ### Security Enhancements
+
 - Disable XML-RPC to prevent attacks
 - Remove WordPress version information
 - Disable RSS feeds (not needed in headless)
@@ -26,6 +28,7 @@ Transform WordPress into a true headless CMS with customizable redirects, securi
 - Content Security Policy support
 
 ### Performance Optimizations
+
 - Remove unnecessary WordPress head tags
 - Disable emoji scripts and styles
 - Disable embeds and oEmbed

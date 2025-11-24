@@ -1,0 +1,40 @@
+{
+  "name": "suleman-se/headless-lock-pro",
+  "description": "Transform WordPress into a true headless CMS with customizable redirects, security enhancements, and performance optimizations.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "M. Suleman",
+      "email": "your-email@example.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0",
+    "wp-coding-standards/wpcs": "^3.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "HeadlessLockPro\\": "includes/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "HeadlessLockPro\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "lint": "phpcs",
+    "lint-fix": "phpcbf"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

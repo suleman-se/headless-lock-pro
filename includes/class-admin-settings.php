@@ -224,6 +224,16 @@ class Admin_Settings {
 				array( 'id' => $id )
 			);
 		}
+
+		// Add post revisions limit field if limiting is enabled.
+		add_settings_field(
+			'post_revisions_limit',
+			__( 'Post Revisions Limit', 'headless-lock-pro' ),
+			array( __CLASS__, 'number_field' ),
+			'headless-lock-pro',
+			'headless_lock_performance_section',
+			array( 'id' => 'post_revisions_limit', 'min' => 1, 'max' => 50, 'default' => 5 )
+		);
 	}
 
 	/**
@@ -275,6 +285,10 @@ class Admin_Settings {
 
 		if ( isset( $input['custom_message_description'] ) ) {
 			$sanitized['custom_message_description'] = sanitize_textarea_field( $input['custom_message_description'] );
+		}
+
+		if ( isset( $input['post_revisions_limit'] ) ) {
+			$sanitized['post_revisions_limit'] = absint( $input['post_revisions_limit'] );
 		}
 
 		return $sanitized;
@@ -342,6 +356,21 @@ class Admin_Settings {
 		$placeholder = isset( $args['placeholder'] ) ? $args['placeholder'] : '';
 		?>
 		<textarea name="headless_lock_settings[<?php echo esc_attr( $args['id'] ); ?>]" placeholder="<?php echo esc_attr( $placeholder ); ?>" class="large-text" rows="3"><?php echo esc_textarea( $value ); ?></textarea>
+		<?php
+	}
+
+	/**
+	 * Number field callback.
+	 *
+	 * @param array $args Field arguments.
+	 */
+	public static function number_field( $args ) {
+		$settings = get_option( 'headless_lock_settings', array() );
+		$value    = isset( $settings[ $args['id'] ] ) ? $settings[ $args['id'] ] : ( isset( $args['default'] ) ? $args['default'] : 0 );
+		$min      = isset( $args['min'] ) ? $args['min'] : 0;
+		$max      = isset( $args['max'] ) ? $args['max'] : 100;
+		?>
+		<input type="number" name="headless_lock_settings[<?php echo esc_attr( $args['id'] ); ?>]" value="<?php echo esc_attr( $value ); ?>" min="<?php echo esc_attr( $min ); ?>" max="<?php echo esc_attr( $max ); ?>" class="small-text" />
 		<?php
 	}
 
