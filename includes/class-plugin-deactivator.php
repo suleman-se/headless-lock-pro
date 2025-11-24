@@ -4,23 +4,36 @@
  *
  * Handles plugin deactivation tasks.
  *
- * @package HeadlessLockPro
- */
+ * @package    HeadlessLockPro
+ * @subpackage HeadlessLockPro/includes
+ * @author     M. Suleman <your-email@example.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://github.com/suleman-se/headless-lock-pro
+ * @since      2.1.0
 
 namespace HeadlessLockPro;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH') ) {
 	exit;
 }
 
 /**
  * Class Plugin_Deactivator
+ *
+ * @package    HeadlessLockPro
+ * @subpackage HeadlessLockPro/includes
+ * @author     M. Suleman <your-email@example.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://github.com/suleman-se/headless-lock-pro
  */
 class Plugin_Deactivator {
 
+
 	/**
 	 * Deactivate the plugin.
+	 *
+	 * @return void
 	 */
 	public static function deactivate() {
 		// Flush rewrite rules to clean up.
@@ -41,6 +54,8 @@ class Plugin_Deactivator {
 
 	/**
 	 * Clear all plugin-related transients.
+	 *
+	 * @return void
 	 */
 	private static function clear_plugin_transients() {
 		global $wpdb;

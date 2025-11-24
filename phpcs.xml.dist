@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<ruleset name="Headless Lock Pro">
+    <description>Coding standards for Headless Lock Pro WordPress Plugin</description>
+
+    <!-- What to scan -->
+    <file>./includes</file>
+    <file>./headless-lock-pro.php</file>
+
+    <!-- Exclude vendor and other directories -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/tests/*</exclude-pattern>
+
+    <!-- Use WordPress Coding Standards -->
+    <rule ref="WordPress">
+        <!-- Allow camelCase method names which are common in modern PHP -->
+        <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>
+        
+        <!-- Don't require @package tags in every file (we have them in headers) -->
+        <exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
+        
+        <!-- Allow private methods without underscore prefix -->
+        <exclude name="WordPress.NamingConventions.ValidFunctionName.PrivateNoUnderscore"/>
+        
+        <!-- Don't enforce camelCase for function names (WordPress uses snake_case) -->
+        <exclude name="WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid"/>
+        
+        <!-- Allow longer lines for readability -->
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+        
+        <!-- Don't require all comment tags -->
+        <exclude name="Squiz.Commenting.FileComment.Missing"/>
+        <exclude name="Squiz.Commenting.ClassComment.Missing"/>
+        <exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+        <exclude name="Generic.Commenting.DocComment.MissingShort"/>
+        
+        <!-- Allow @return void to be grouped with parameters -->
+        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentNotCapital"/>
+        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType"/>
+    </rule>
+
+    <!-- Check for PHP cross-version compatibility -->
+    <config name="testVersion" value="7.4-"/>
+    
+    <!-- Only check for errors, not warnings -->
+    <config name="ignore_warnings_on_exit" value="1"/>
+</ruleset>

@@ -13,7 +13,12 @@
  * Text Domain: headless-lock-pro
  * Domain Path: /languages
  *
- * @package HeadlessLockPro
+ * @package    HeadlessLockPro
+ * @subpackage HeadlessLockPro
+ * @author     M. Suleman <your-email@example.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://github.com/suleman-se/headless-lock-pro
+ * @since      2.1.0
  */
 
 // Exit if accessed directly.
@@ -37,6 +42,8 @@ require_once HEADLESS_LOCK_PLUGIN_DIR . 'includes/class-plugin-deactivator.php';
 
 /**
  * Initialize the plugin.
+ *
+ * @return void
  */
 function headless_lock_pro_init() {
 	// Load text domain for translations.
@@ -49,7 +56,7 @@ function headless_lock_pro_init() {
 	HeadlessLockPro\Admin_Settings::init();
 }
 
-// Initialize the plugin if not in tests
+// Initialize the plugin if not in tests.
 if ( ! defined( 'WP_TESTS_DOMAIN' ) ) {
 	headless_lock_pro_init();
 }
@@ -57,6 +64,8 @@ add_action( 'plugins_loaded', 'headless_lock_pro_init' );
 
 /**
  * Activation hook.
+ *
+ * @return void
  */
 function activate_headless_lock_pro() {
 	HeadlessLockPro\Plugin_Activator::activate();
@@ -65,6 +74,8 @@ register_activation_hook( __FILE__, 'activate_headless_lock_pro' );
 
 /**
  * Deactivation hook.
+ *
+ * @return void
  */
 function deactivate_headless_lock_pro() {
 	HeadlessLockPro\Plugin_Deactivator::deactivate();
@@ -73,6 +84,8 @@ register_deactivation_hook( __FILE__, 'deactivate_headless_lock_pro' );
 
 /**
  * Uninstall hook.
+ *
+ * @return void
  */
 function uninstall_headless_lock_pro() {
 	// Clean up plugin options.

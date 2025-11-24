@@ -4,18 +4,31 @@
  *
  * Handles blocking of frontend access and redirects.
  *
- * @package HeadlessLockPro
- */
+ * @package    HeadlessLockPro
+ * @subpackage HeadlessLockPro/includes
+ * @author     M. Suleman <your-email@example.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://github.com/suleman-se/headless-lock-pro
+ * @since      2.1.0
 
 namespace HeadlessLockPro;
 
 /**
  * Class Frontend_Blocker
+ *
+ * @package    HeadlessLockPro
+ * @subpackage HeadlessLockPro/includes
+ * @author     M. Suleman <your-email@example.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://github.com/suleman-se/headless-lock-pro
  */
 class Frontend_Blocker {
 
+
 	/**
 	 * Initialize the class.
+	 *
+	 * @return void
 	 */
 	public static function init() {
 		add_action( 'template_redirect', array( __CLASS__, 'block_frontend_access' ), 1 );
@@ -23,6 +36,8 @@ class Frontend_Blocker {
 
 	/**
 	 * Block frontend access.
+	 *
+	 * @return void
 	 */
 	public static function block_frontend_access() {
 		// Allow Admin Dashboard.
@@ -31,7 +46,8 @@ class Frontend_Blocker {
 		}
 
 		// Allow REST API requests.
-		if ( strpos( $_SERVER['REQUEST_URI'], '/wp-json/' ) === 0 || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+		if ( ( ! empty( $request_uri ) && strpos( $request_uri, '/wp-json/' ) === 0 ) || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
 			return;
 		}
 
@@ -51,19 +67,19 @@ class Frontend_Blocker {
 		}
 
 		// Allow GraphQL endpoint.
-		if ( strpos( $_SERVER['REQUEST_URI'], '/graphql' ) !== false ) {
+		if ( ! empty( $request_uri ) && strpos( $request_uri, '/graphql' ) !== false ) {
 			return;
 		}
 
 		// Allow webhooks endpoint.
-		if ( strpos( $_SERVER['REQUEST_URI'], '/wp-webhooks/' ) === 0 ) {
+		if ( ! empty( $request_uri ) && strpos( $request_uri, '/wp-webhooks/' ) === 0 ) {
 			return;
 		}
 
 		// Allow custom whitelisted paths.
 		$whitelisted_paths = apply_filters( 'headless_lock_whitelist_paths', array() );
 		foreach ( $whitelisted_paths as $path ) {
-			if ( strpos( $_SERVER['REQUEST_URI'], $path ) === 0 ) {
+			if ( ! empty( $request_uri ) && strpos( $request_uri, $path ) === 0 ) {
 				return;
 			}
 		}
@@ -84,16 +100,18 @@ class Frontend_Blocker {
 	}
 
 	/**
-	 * Show custom 404 page.
+	 * Display custom 404 page.
 	 *
-	 * @param array $settings Plugin settings.
+	 * @param array $settings Plugin settings array.
+	 * @return void
 	 */
 	private static function show_404_page( $settings ) {
 		status_header( 404 );
 		nocache_headers();
 
 		// Return JSON for API requests.
-		if ( strpos( $_SERVER['HTTP_ACCEPT'], 'application/json' ) !== false ) {
+		$http_accept = isset( $_SERVER['HTTP_ACCEPT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT'] ) ) : '';
+		if ( ! empty( $http_accept ) && strpos( $http_accept, 'application/json' ) !== false ) {
 			header( 'Content-Type: application/json' );
 			echo wp_json_encode(
 				array(
@@ -103,7 +121,7 @@ class Frontend_Blocker {
 				)
 			);
 			if ( ! defined( 'WP_TESTS_DOMAIN' ) ) {
-				exit;
+					exit;
 			}
 		}
 
@@ -125,8 +143,8 @@ class Frontend_Blocker {
 			<title><?php echo esc_html( $title ); ?></title>
 			<style>
 				body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-					   display: flex; align-items: center; justify-content: center; min-height: 100vh;
-					   margin: 0; background: #f5f5f5; color: #333; padding: 1rem; }
+						display: flex; align-items: center; justify-content: center; min-height: 100vh;
+						margin: 0; background: #f5f5f5; color: #333; padding: 1rem; }
 				.container { text-align: center; max-width: 600px; padding: 2rem; }
 				h1 { font-size: 4rem; margin: 0 0 1rem 0; color: #0073aa; }
 				p { font-size: 1.2rem; color: #666; margin: 0.5rem 0; }
@@ -141,15 +159,15 @@ class Frontend_Blocker {
 			<div class="container">
 				<h1>404</h1>
 				<p><strong><?php echo esc_html( $heading ); ?></strong></p>
-				<?php if ( ! empty( $description ) ) : ?>
+		<?php if ( ! empty( $description ) ) : ?>
 					<p><?php echo esc_html( $description ); ?></p>
-				<?php endif; ?>
-				<?php if ( $show_api_url ) : ?>
+		<?php endif; ?>
+		<?php if ( $show_api_url ) : ?>
 					<div class="code"><?php echo esc_html__( 'REST API:', 'headless-lock-pro' ); ?> <?php echo esc_url( rest_url() ); ?></div>
-				<?php endif; ?>
-				<?php if ( $show_admin_link ) : ?>
+		<?php endif; ?>
+		<?php if ( $show_admin_link ) : ?>
 					<p><small><?php echo esc_html__( 'If you are an administrator, visit', 'headless-lock-pro' ); ?> <a href="<?php echo esc_url( admin_url() ); ?>"><?php echo esc_html__( 'WP Admin', 'headless-lock-pro' ); ?></a></small></p>
-				<?php endif; ?>
+		<?php endif; ?>
 			</div>
 		</body>
 		</html>

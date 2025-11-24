@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"HeadlessLockPro\\Tests\\SecurityManagerTest::test_composer_autoload_works":0.006}}
+{"version":1,"defects":[],"times":{"HeadlessLockPro\\Tests\\SecurityManagerTest::test_composer_autoload_works":0.005}}

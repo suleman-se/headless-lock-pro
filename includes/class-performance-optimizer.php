@@ -4,23 +4,34 @@
  *
  * Handles performance optimizations for headless WordPress setup.
  *
- * @package HeadlessLockPro
- */
-
-namespace HeadlessLockPro;
+ * @package    HeadlessLockPro
+ * @subpackage HeadlessLockPro/includes
+ * @author     M. Suleman <your-email@example.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://github.com/suleman-se/headless-lock-pro
+ * @since      2.1.0namespace HeadlessLockPro;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH') ) {
 	exit;
 }
 
 /**
  * Class Performance_Optimizer
+ *
+ * @package    HeadlessLockPro
+ * @subpackage HeadlessLockPro/includes
+ * @author     M. Suleman <your-email@example.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://github.com/suleman-se/headless-lock-pro
  */
 class Performance_Optimizer {
 
+
 	/**
 	 * Initialize the class.
+	 *
+	 * @return void
 	 */
 	public static function init() {
 		$settings = get_option( 'headless_lock_settings', array() );
@@ -71,6 +82,8 @@ class Performance_Optimizer {
 
 	/**
 	 * Remove unnecessary WordPress head tags.
+	 *
+	 * @return void
 	 */
 	public static function remove_head_tags() {
 		// Remove REST API link tag.
@@ -94,6 +107,8 @@ class Performance_Optimizer {
 
 	/**
 	 * Disable emojis.
+	 *
+	 * @return void
 	 */
 	public static function disable_emojis() {
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -111,7 +126,7 @@ class Performance_Optimizer {
 	/**
 	 * Filter function used to remove the tinymce emoji plugin.
 	 *
-	 * @param array $plugins TinyMCE plugins.
+	 * @param  array $plugins TinyMCE plugins.
 	 * @return array Filtered TinyMCE plugins.
 	 */
 	public static function disable_emojis_tinymce( $plugins ) {
@@ -124,8 +139,8 @@ class Performance_Optimizer {
 	/**
 	 * Remove emoji CDN hostname from DNS prefetching hints.
 	 *
-	 * @param array  $urls          URLs to print for resource hints.
-	 * @param string $relation_type The relation type the URLs are printed for.
+	 * @param  array  $urls          URLs to print for resource hints.
+	 * @param  string $relation_type The relation type the URLs are printed for.
 	 * @return array Difference betwen the two arrays.
 	 */
 	public static function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
@@ -138,6 +153,8 @@ class Performance_Optimizer {
 
 	/**
 	 * Disable embeds.
+	 *
+	 * @return void
 	 */
 	public static function disable_embeds() {
 		// Remove the REST API endpoint.
@@ -162,7 +179,7 @@ class Performance_Optimizer {
 	/**
 	 * Remove embeds rewrite rules.
 	 *
-	 * @param array $rules WordPress rewrite rules.
+	 * @param  array $rules WordPress rewrite rules.
 	 * @return array Filtered rewrite rules.
 	 */
 	public static function disable_embeds_rewrites( $rules ) {
@@ -176,6 +193,8 @@ class Performance_Optimizer {
 
 	/**
 	 * Disable dashicons on frontend for non-logged-in users.
+	 *
+	 * @return void
 	 */
 	public static function disable_dashicons() {
 		if ( ! is_user_logged_in() ) {
@@ -187,7 +206,7 @@ class Performance_Optimizer {
 	/**
 	 * Remove query strings from static resources.
 	 *
-	 * @param string $src Resource URL.
+	 * @param  string $src Resource URL.
 	 * @return string Filtered resource URL.
 	 */
 	public static function remove_query_strings( $src ) {
@@ -200,9 +219,9 @@ class Performance_Optimizer {
 	/**
 	 * Optimize REST API responses by removing unnecessary data.
 	 *
-	 * @param WP_REST_Response $response The response object.
-	 * @param WP_Post          $post     Post object.
-	 * @param WP_REST_Request  $request  Request object.
+	 * @param  WP_REST_Response $response The response object.
+	 * @param  WP_Post          $post     Post object.
+	 * @param  WP_REST_Request  $request  Request object.
 	 * @return WP_REST_Response Modified response object.
 	 */
 	public static function optimize_rest_response( $response, $post, $request ) {
@@ -243,6 +262,8 @@ class Performance_Optimizer {
 
 	/**
 	 * Disable heartbeat API.
+	 *
+	 * @return void
 	 */
 	public static function disable_heartbeat() {
 		$settings = get_option( 'headless_lock_settings', array() );

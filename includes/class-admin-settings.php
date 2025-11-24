@@ -4,23 +4,36 @@
  *
  * Handles the admin settings page and options.
  *
- * @package HeadlessLockPro
- */
+ * @package    HeadlessLockPro
+ * @subpackage HeadlessLockPro/includes
+ * @author     M. Suleman <your-email@example.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://github.com/suleman-se/headless-lock-pro
+ * @since      2.1.0
 
 namespace HeadlessLockPro;
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH') ) {
 	exit;
 }
 
 /**
  * Class Admin_Settings
+ *
+ * @package    HeadlessLockPro
+ * @subpackage HeadlessLockPro/includes
+ * @author     M. Suleman <your-email@example.com>
+ * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
+ * @link       https://github.com/suleman-se/headless-lock-pro
  */
 class Admin_Settings {
 
+
 	/**
 	 * Initialize the class.
+	 *
+	 * @return void
 	 */
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'add_admin_menu' ) );
@@ -31,6 +44,8 @@ class Admin_Settings {
 
 	/**
 	 * Add admin menu.
+	 *
+	 * @return void
 	 */
 	public static function add_admin_menu() {
 		add_options_page(
@@ -45,7 +60,7 @@ class Admin_Settings {
 	/**
 	 * Add action links to plugin page.
 	 *
-	 * @param array $links Existing plugin action links.
+	 * @param  array $links Existing plugin action links.
 	 * @return array Modified plugin action links.
 	 */
 	public static function add_action_links( $links ) {
@@ -58,6 +73,7 @@ class Admin_Settings {
 	 * Enqueue admin styles.
 	 *
 	 * @param string $hook Current admin page hook.
+	 * @return void
 	 */
 	public static function enqueue_admin_styles( $hook ) {
 		if ( 'settings_page_headless-lock-pro' !== $hook ) {
@@ -74,6 +90,8 @@ class Admin_Settings {
 
 	/**
 	 * Register settings.
+	 *
+	 * @return void
 	 */
 	public static function register_settings() {
 		register_setting(
@@ -123,7 +141,10 @@ class Admin_Settings {
 			array( __CLASS__, 'checkbox_field' ),
 			'headless-lock-pro',
 			'headless_lock_redirect_section',
-			array( 'id' => 'redirect_enabled', 'description' => __( 'Redirect frontend requests to a custom URL', 'headless-lock-pro' ) )
+			array(
+				'id'          => 'redirect_enabled',
+				'description' => __( 'Redirect frontend requests to a custom URL', 'headless-lock-pro' ),
+			)
 		);
 
 		add_settings_field(
@@ -132,7 +153,10 @@ class Admin_Settings {
 			array( __CLASS__, 'text_field' ),
 			'headless-lock-pro',
 			'headless_lock_redirect_section',
-			array( 'id' => 'redirect_url', 'placeholder' => 'https://yourfrontend.com' )
+			array(
+				'id'          => 'redirect_url',
+				'placeholder' => 'https://yourfrontend.com',
+			)
 		);
 
 		// Add fields - Custom Message.
@@ -142,7 +166,10 @@ class Admin_Settings {
 			array( __CLASS__, 'text_field' ),
 			'headless-lock-pro',
 			'headless_lock_message_section',
-			array( 'id' => 'custom_message_title', 'placeholder' => __( '404 - Headless Mode', 'headless-lock-pro' ) )
+			array(
+				'id'          => 'custom_message_title',
+				'placeholder' => __( '404 - Headless Mode', 'headless-lock-pro' ),
+			)
 		);
 
 		add_settings_field(
@@ -151,7 +178,10 @@ class Admin_Settings {
 			array( __CLASS__, 'text_field' ),
 			'headless-lock-pro',
 			'headless_lock_message_section',
-			array( 'id' => 'custom_message_heading', 'placeholder' => __( 'This WordPress site is running in Headless Mode', 'headless-lock-pro' ) )
+			array(
+				'id'          => 'custom_message_heading',
+				'placeholder' => __( 'This WordPress site is running in Headless Mode', 'headless-lock-pro' ),
+			)
 		);
 
 		add_settings_field(
@@ -160,7 +190,10 @@ class Admin_Settings {
 			array( __CLASS__, 'textarea_field' ),
 			'headless-lock-pro',
 			'headless_lock_message_section',
-			array( 'id' => 'custom_message_description', 'placeholder' => __( 'The public frontend is disabled. Content is available via:', 'headless-lock-pro' ) )
+			array(
+				'id'          => 'custom_message_description',
+				'placeholder' => __( 'The public frontend is disabled. Content is available via:', 'headless-lock-pro' ),
+			)
 		);
 
 		add_settings_field(
@@ -183,12 +216,12 @@ class Admin_Settings {
 
 		// Add fields - Security.
 		$security_fields = array(
-			'disable_xmlrpc'        => __( 'Disable XML-RPC', 'headless-lock-pro' ),
-			'remove_wp_version'     => __( 'Remove WordPress Version', 'headless-lock-pro' ),
-			'disable_feeds'         => __( 'Disable RSS Feeds', 'headless-lock-pro' ),
-			'disable_file_editor'   => __( 'Disable File Editor', 'headless-lock-pro' ),
-			'add_security_headers'  => __( 'Add Security Headers', 'headless-lock-pro' ),
-			'limit_rest_api'        => __( 'Limit REST API Access', 'headless-lock-pro' ),
+			'disable_xmlrpc'       => __( 'Disable XML-RPC', 'headless-lock-pro' ),
+			'remove_wp_version'    => __( 'Remove WordPress Version', 'headless-lock-pro' ),
+			'disable_feeds'        => __( 'Disable RSS Feeds', 'headless-lock-pro' ),
+			'disable_file_editor'  => __( 'Disable File Editor', 'headless-lock-pro' ),
+			'add_security_headers' => __( 'Add Security Headers', 'headless-lock-pro' ),
+			'limit_rest_api'       => __( 'Limit REST API Access', 'headless-lock-pro' ),
 		);
 
 		foreach ( $security_fields as $id => $label ) {
@@ -204,14 +237,14 @@ class Admin_Settings {
 
 		// Add fields - Performance.
 		$performance_fields = array(
-			'remove_head_tags'       => __( 'Remove Unnecessary Head Tags', 'headless-lock-pro' ),
-			'disable_emojis'         => __( 'Disable Emojis', 'headless-lock-pro' ),
-			'disable_embeds'         => __( 'Disable Embeds', 'headless-lock-pro' ),
-			'disable_dashicons'      => __( 'Disable Dashicons (Frontend)', 'headless-lock-pro' ),
-			'remove_query_strings'   => __( 'Remove Query Strings', 'headless-lock-pro' ),
+			'remove_head_tags'        => __( 'Remove Unnecessary Head Tags', 'headless-lock-pro' ),
+			'disable_emojis'          => __( 'Disable Emojis', 'headless-lock-pro' ),
+			'disable_embeds'          => __( 'Disable Embeds', 'headless-lock-pro' ),
+			'disable_dashicons'       => __( 'Disable Dashicons (Frontend)', 'headless-lock-pro' ),
+			'remove_query_strings'    => __( 'Remove Query Strings', 'headless-lock-pro' ),
 			'optimize_rest_responses' => __( 'Optimize REST API Responses', 'headless-lock-pro' ),
-			'limit_post_revisions'   => __( 'Limit Post Revisions', 'headless-lock-pro' ),
-			'disable_heartbeat'      => __( 'Disable Heartbeat API', 'headless-lock-pro' ),
+			'limit_post_revisions'    => __( 'Limit Post Revisions', 'headless-lock-pro' ),
+			'disable_heartbeat'       => __( 'Disable Heartbeat API', 'headless-lock-pro' ),
 		);
 
 		foreach ( $performance_fields as $id => $label ) {
@@ -232,14 +265,19 @@ class Admin_Settings {
 			array( __CLASS__, 'number_field' ),
 			'headless-lock-pro',
 			'headless_lock_performance_section',
-			array( 'id' => 'post_revisions_limit', 'min' => 1, 'max' => 50, 'default' => 5 )
+			array(
+				'id'      => 'post_revisions_limit',
+				'min'     => 1,
+				'max'     => 50,
+				'default' => 5,
+			)
 		);
 	}
 
 	/**
 	 * Sanitize settings.
 	 *
-	 * @param array $input Settings input.
+	 * @param  array $input Settings input.
 	 * @return array Sanitized settings.
 	 */
 	public static function sanitize_settings( $input ) {
@@ -296,19 +334,36 @@ class Admin_Settings {
 
 	/**
 	 * Section callbacks.
+	 *
+	 * @return void
 	 */
 	public static function redirect_section_callback() {
 		echo '<p>' . esc_html__( 'Configure redirect behavior for frontend requests.', 'headless-lock-pro' ) . '</p>';
 	}
 
+	/**
+	 * Display message section description.
+	 *
+	 * @return void
+	 */
 	public static function message_section_callback() {
 		echo '<p>' . esc_html__( 'Customize the 404 message shown when redirect is disabled.', 'headless-lock-pro' ) . '</p>';
 	}
 
+	/**
+	 * Display security section description.
+	 *
+	 * @return void
+	 */
 	public static function security_section_callback() {
 		echo '<p>' . esc_html__( 'Enable security features for your headless WordPress installation.', 'headless-lock-pro' ) . '</p>';
 	}
 
+	/**
+	 * Display performance section description.
+	 *
+	 * @return void
+	 */
 	public static function performance_section_callback() {
 		echo '<p>' . esc_html__( 'Optimize WordPress performance for headless operation.', 'headless-lock-pro' ) . '</p>';
 	}
@@ -317,6 +372,7 @@ class Admin_Settings {
 	 * Checkbox field callback.
 	 *
 	 * @param array $args Field arguments.
+	 * @return void
 	 */
 	public static function checkbox_field( $args ) {
 		$settings = get_option( 'headless_lock_settings', array() );
@@ -324,9 +380,9 @@ class Admin_Settings {
 		?>
 		<label>
 			<input type="checkbox" name="headless_lock_settings[<?php echo esc_attr( $args['id'] ); ?>]" value="1" <?php checked( 1, $value ); ?> />
-			<?php if ( isset( $args['description'] ) ) : ?>
+		<?php if ( isset( $args['description'] ) ) : ?>
 				<span class="description"><?php echo esc_html( $args['description'] ); ?></span>
-			<?php endif; ?>
+		<?php endif; ?>
 		</label>
 		<?php
 	}
@@ -335,6 +391,7 @@ class Admin_Settings {
 	 * Text field callback.
 	 *
 	 * @param array $args Field arguments.
+	 * @return void
 	 */
 	public static function text_field( $args ) {
 		$settings    = get_option( 'headless_lock_settings', array() );
@@ -349,6 +406,7 @@ class Admin_Settings {
 	 * Textarea field callback.
 	 *
 	 * @param array $args Field arguments.
+	 * @return void
 	 */
 	public static function textarea_field( $args ) {
 		$settings    = get_option( 'headless_lock_settings', array() );
@@ -363,6 +421,7 @@ class Admin_Settings {
 	 * Number field callback.
 	 *
 	 * @param array $args Field arguments.
+	 * @return void
 	 */
 	public static function number_field( $args ) {
 		$settings = get_option( 'headless_lock_settings', array() );
@@ -376,6 +435,8 @@ class Admin_Settings {
 
 	/**
 	 * Settings page callback.
+	 *
+	 * @return void
 	 */
 	public static function settings_page() {
 		// Check user capabilities.
@@ -391,37 +452,37 @@ class Admin_Settings {
 
 			<div class="headless-lock-header">
 				<p class="description">
-					<?php esc_html_e( 'Transform WordPress into a true headless CMS. Configure redirects, security enhancements, and performance optimizations.', 'headless-lock-pro' ); ?>
+		<?php esc_html_e( 'Transform WordPress into a true headless CMS. Configure redirects, security enhancements, and performance optimizations.', 'headless-lock-pro' ); ?>
 				</p>
 			</div>
 
 			<form method="post" action="options.php">
-				<?php
-				settings_fields( 'headless_lock_settings_group' );
-				do_settings_sections( 'headless-lock-pro' );
-				submit_button();
-				?>
+		<?php
+		settings_fields( 'headless_lock_settings_group' );
+		do_settings_sections( 'headless-lock-pro' );
+		submit_button();
+		?>
 			</form>
 
 			<div class="headless-lock-footer">
 				<h3><?php esc_html_e( 'About Headless Lock Pro', 'headless-lock-pro' ); ?></h3>
 				<p>
-					<?php
-					printf(
-						/* translators: %s: Plugin version */
-						esc_html__( 'Version: %s', 'headless-lock-pro' ),
-						esc_html( HEADLESS_LOCK_VERSION )
-					);
-					?>
+		<?php
+		printf(
+		/* translators: %s: Plugin version */
+			esc_html__( 'Version: %s', 'headless-lock-pro' ),
+			esc_html( HEADLESS_LOCK_VERSION )
+		);
+		?>
 				</p>
 				<p>
-					<?php
-					printf(
-						/* translators: %s: Author name with link */
-						esc_html__( 'Developed by %s', 'headless-lock-pro' ),
-						'<a href="https://www.linkedin.com/in/m-suleman-khan/" target="_blank">M. Suleman</a>'
-					);
-					?>
+		<?php
+		printf(
+		/* translators: %s: Author name with link */
+			esc_html__( 'Developed by %s', 'headless-lock-pro' ),
+			'<a href="https://www.linkedin.com/in/m-suleman-khan/" target="_blank">M. Suleman</a>'
+		);
+		?>
 				</p>
 			</div>
 		</div>
