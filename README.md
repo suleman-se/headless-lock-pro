@@ -1,11 +1,13 @@
 # Headless Lock Pro
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)
 ![WordPress](https://img.shields.io/badge/WordPress-5.8+-green.svg)
 ![PHP](https://img.shields.io/badge/PHP-7.4+-purple.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0+-red.svg)
 
 Transform WordPress into a true headless CMS with customizable redirects, security enhancements, and performance optimizations. Perfect for Next.js, React, and Vue.js frontends.
+
+[📋 View Changelog](CHANGELOG.md)
 
 ## Features
 
@@ -265,7 +267,18 @@ Contributions are welcome! Please:
 
 ## Changelog
 
+### Version 2.1.0 (2025-11-24)
+
+- Made security features conditional based on settings
+- Added security headers and feed disabling options
+- Added customizable post revisions limit
+- Improved project infrastructure with Composer, CI, and tests
+- Fixed various linting and formatting issues
+
+For a full list of changes, see [CHANGELOG.md](CHANGELOG.md).
+
 ### Version 2.0.0 (2024-11-24)
+
 - Complete rewrite with OOP architecture
 - Added comprehensive security features
 - Added performance optimization tools
@@ -275,6 +288,7 @@ Contributions are welcome! Please:
 - Translation ready
 
 ### Version 1.0.0
+
 - Initial release
 
 ## Roadmap

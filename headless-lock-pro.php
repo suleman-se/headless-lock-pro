@@ -3,7 +3,7 @@
  * Plugin Name: Headless Lock Pro
  * Plugin URI: https://github.com/suleman-se/headless-lock-pro
  * Description: Transform WordPress into a true headless CMS with customizable redirects, security enhancements, and performance optimizations. Perfect for Next.js, React, and Vue.js frontends.
- * Version: 2.0.0
+ * Version: 2.1.0
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: M. Suleman
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants.
-define( 'HEADLESS_LOCK_VERSION', '2.0.0' );
+define( 'HEADLESS_LOCK_VERSION', '2.1.0' );
 define( 'HEADLESS_LOCK_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'HEADLESS_LOCK_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'HEADLESS_LOCK_PLUGIN_FILE', __FILE__ );
@@ -47,6 +47,11 @@ function headless_lock_pro_init() {
 	HeadlessLockPro\Security_Manager::init();
 	HeadlessLockPro\Performance_Optimizer::init();
 	HeadlessLockPro\Admin_Settings::init();
+}
+
+// Initialize the plugin if not in tests
+if ( ! defined( 'WP_TESTS_DOMAIN' ) ) {
+	headless_lock_pro_init();
 }
 add_action( 'plugins_loaded', 'headless_lock_pro_init' );
 

@@ -29,8 +29,8 @@
   },
   "scripts": {
     "test": "phpunit",
-    "lint": "phpcs",
-    "lint-fix": "phpcbf"
+    "lint": "phpcs includes/ headless-lock-pro.php",
+    "lint-fix": "phpcbf includes/ headless-lock-pro.php"
   },
   "config": {
     "allow-plugins": {

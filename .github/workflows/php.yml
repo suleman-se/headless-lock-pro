@@ -23,8 +23,17 @@ jobs:
     - name: Install dependencies
       run: composer install --no-progress --prefer-dist --optimize-autoloader
 
+    - name: Verify test setup
+      run: |
+        pwd
+        ls -la
+        ls -la tests/
+        cat phpunit.xml
+        ls -la vendor/bin/phpunit
+        ./vendor/bin/phpunit --version
+
     - name: Run tests
-      run: composer test
+      run: php vendor/bin/phpunit --testdox
 
     - name: Run linting
       run: composer lint

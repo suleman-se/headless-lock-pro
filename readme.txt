@@ -4,7 +4,7 @@ Tags: headless, cms, rest-api, nextjs, react, vue, decoupled, jamstack, security
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,13 @@ Yes, plugin settings are removed on uninstall. Content (posts, pages, media) is 
 6. Custom 404 page example
 
 == Changelog ==
+
+= 2.1.0 =
+* Made security features conditional based on settings
+* Added security headers and feed disabling options
+* Added customizable post revisions limit
+* Improved project infrastructure with Composer, CI, and tests
+* Fixed various linting and formatting issues
 
 = 2.0.0 - 2024-11-24 =
 * Complete rewrite with object-oriented architecture

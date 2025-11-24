@@ -74,7 +74,9 @@ class Frontend_Blocker {
 		// Option 1: Redirect to custom URL.
 		if ( ! empty( $settings['redirect_enabled'] ) && ! empty( $settings['redirect_url'] ) ) {
 			wp_redirect( esc_url( $settings['redirect_url'] ), 301 );
-			exit;
+			if ( ! defined( 'WP_TESTS_DOMAIN' ) ) {
+				exit;
+			}
 		}
 
 		// Option 2: Show custom 404 message.
@@ -100,7 +102,9 @@ class Frontend_Blocker {
 					'code'    => 'headless_mode_active',
 				)
 			);
-			exit;
+			if ( ! defined( 'WP_TESTS_DOMAIN' ) ) {
+				exit;
+			}
 		}
 
 		// Get custom message settings.
@@ -150,6 +154,8 @@ class Frontend_Blocker {
 		</body>
 		</html>
 		<?php
-		exit;
+		if ( ! defined( 'WP_TESTS_DOMAIN' ) ) {
+			exit;
+		}
 	}
 }
