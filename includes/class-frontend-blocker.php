@@ -1,4 +1,6 @@
 <?php
+namespace HeadlessLockPro;
+
 /**
  * Frontend Blocker Class
  *
@@ -6,24 +8,12 @@
  *
  * @package    HeadlessLockPro
  * @subpackage HeadlessLockPro/includes
- * @author     M. Suleman <your-email@example.com>
+ * @author     M. Suleman <suleman192@gmail.com>
  * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
  * @link       https://github.com/suleman-se/headless-lock-pro
  * @since      2.1.0
-
-namespace HeadlessLockPro;
-
-/**
- * Class Frontend_Blocker
- *
- * @package    HeadlessLockPro
- * @subpackage HeadlessLockPro/includes
- * @author     M. Suleman <your-email@example.com>
- * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
- * @link       https://github.com/suleman-se/headless-lock-pro
  */
 class Frontend_Blocker {
-
 
 	/**
 	 * Initialize the class.
@@ -89,7 +79,7 @@ class Frontend_Blocker {
 
 		// Option 1: Redirect to custom URL.
 		if ( ! empty( $settings['redirect_enabled'] ) && ! empty( $settings['redirect_url'] ) ) {
-			wp_redirect( esc_url( $settings['redirect_url'] ), 301 );
+			wp_safe_redirect( esc_url( $settings['redirect_url'] ), 301 );
 			if ( ! defined( 'WP_TESTS_DOMAIN' ) ) {
 				exit;
 			}

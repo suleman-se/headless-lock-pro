@@ -6,25 +6,19 @@
  *
  * @package    HeadlessLockPro
  * @subpackage HeadlessLockPro/includes
- * @author     M. Suleman <your-email@example.com>
+ * @author     M. Suleman <suleman192@gmail.com>
  * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
  * @link       https://github.com/suleman-se/headless-lock-pro
- * @since      2.1.0namespace HeadlessLockPro;
+ * @since      2.1.0
+ */
+
+namespace HeadlessLockPro;
 
 // Exit if accessed directly.
-if (! defined('ABSPATH') ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Class Performance_Optimizer
- *
- * @package    HeadlessLockPro
- * @subpackage HeadlessLockPro/includes
- * @author     M. Suleman <your-email@example.com>
- * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
- * @link       https://github.com/suleman-se/headless-lock-pro
- */
 class Performance_Optimizer {
 
 
@@ -220,11 +214,9 @@ class Performance_Optimizer {
 	 * Optimize REST API responses by removing unnecessary data.
 	 *
 	 * @param  WP_REST_Response $response The response object.
-	 * @param  WP_Post          $post     Post object.
-	 * @param  WP_REST_Request  $request  Request object.
 	 * @return WP_REST_Response Modified response object.
 	 */
-	public static function optimize_rest_response( $response, $post, $request ) {
+	public static function optimize_rest_response( $response ) {
 		$settings = get_option( 'headless_lock_settings', array() );
 
 		// Get response data.
@@ -258,6 +250,7 @@ class Performance_Optimizer {
 		$response->set_data( $data );
 
 		return $response;
+		// phpcs:enable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 	}
 
 	/**

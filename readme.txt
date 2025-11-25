@@ -1,6 +1,6 @@
 === Headless Lock Pro ===
 Contributors: msulemandev
-Tags: headless, cms, rest-api, nextjs, react, vue, decoupled, jamstack, security, performance
+Tags: headless, cms, rest-api, security, performance
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -8,7 +8,7 @@ Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Transform WordPress into a true headless CMS with customizable redirects, security enhancements, and performance optimizations. Perfect for Next.js, React, and Vue.js frontends.
+Transform WordPress into a headless CMS with frontend blocking, redirects, security, and performance optimizations.
 
 == Description ==
 

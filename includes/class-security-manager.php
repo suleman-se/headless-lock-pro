@@ -6,22 +6,14 @@
  *
  * @package    HeadlessLockPro
  * @subpackage HeadlessLockPro/includes
- * @author     M. Suleman <your-email@example.com>
+ * @author     M. Suleman <suleman192@gmail.com>
  * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
  * @link       https://github.com/suleman-se/headless-lock-pro
  * @since      2.1.0
+ */
 
 namespace HeadlessLockPro;
 
-/**
- * Class Security_Manager
- *
- * @package    HeadlessLockPro
- * @subpackage HeadlessLockPro/includes
- * @author     M. Suleman <your-email@example.com>
- * @license    GPL-2.0+ http://www.gnu.org/licenses/gpl-2.0.txt
- * @link       https://github.com/suleman-se/headless-lock-pro
- */
 class Security_Manager {
 
 	/**
